@@ -25,9 +25,10 @@
     "http": "^0.0.1-security",
     "morgan": "^1.10.0",
     "pg": "^8.8.0",
+    "reflect-metadata": "^0.1.13",
     "typeorm": "0.2.38",
     "winston": "^3.8.2",
-    "reflect-metadata": "^0.1.13"
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@types/cors": "^2.8.10",

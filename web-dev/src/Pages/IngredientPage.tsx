@@ -1,14 +1,16 @@
 import { useState } from "react";
 import { Box, Button } from "@mui/material";
+import { ModifyIngredientForm } from "../Forms/ModifyIngredientForm"
 import { useQueryIngredientList } from "../Hooks/Query/IngredientQuery";
 import { Loader } from "../Components/Loader";
+import { Ingredient } from "../Types/Ingredient"
 import { ErrorPage } from "./ErrorPage";
 import { IngredientTable } from "../Tables/IngredientsTable";
 import { CreateIngredientForm } from "../Forms/CreateIngredientForm";
 
 export function IngredientPage(): JSX.Element {
   const [isCreationMode, setIsCreationMode] = useState(false);
-
+  const [currentIngredient, setCurrentIngredient] = useState<Ingredient | null>()
   const activeCreationMode = () => {
     setIsCreationMode(true);
   };
@@ -16,8 +18,12 @@ export function IngredientPage(): JSX.Element {
   const cancelCreationMode = () => {
     setIsCreationMode(false);
   };
+  const onClickModifyIngredient = (ingredient: Ingredient) => {
+    setCurrentIngredient(ingredient)
+  }
 
   const { data, status, isLoading } = useQueryIngredientList();
+  const ingredients = data ?? []
 
   if (status === "error") {
     return <ErrorPage />;
@@ -39,7 +45,8 @@ export function IngredientPage(): JSX.Element {
       </Box>
       <Box display={"flex"} gap={2}>
         {isCreationMode && <CreateIngredientForm />}
-        <IngredientTable ingredients={data} />
+        {currentIngredient && <ModifyIngredientForm ingredient={currentIngredient} handleClose={() => setCurrentIngredient(undefined)} />}
+        <IngredientTable ingredients={ingredients} onClickModifyIngredient={onClickModifyIngredient} />
       </Box>
     </div>
   );

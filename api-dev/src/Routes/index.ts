@@ -1,4 +1,4 @@
-import { response, Router } from "express";
+import { Router } from "express";
 import { IngredientController } from "../Controllers/IngredientController";
 import { RecipeController } from "../Controllers/RecipeController";
 import { ShoppingListController } from "../Controllers/ShoppingListController";
@@ -17,7 +17,8 @@ recipeRouter.delete("/delete/:id", RecipeController.delete);
 const ingredientRouter = Router();
 ingredientRouter.get("/list", IngredientController.list);
 ingredientRouter.post("/create", IngredientController.create);
-ingredientRouter.put("/update", IngredientController.update);
+ingredientRouter.put("/update/:id", IngredientController.update);
+ingredientRouter.get("/:id/recipes", IngredientController.getRecipes);
 ingredientRouter.delete("/delete/:id", IngredientController.delete);
 
 // SHOPPING LIST

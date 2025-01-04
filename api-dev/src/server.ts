@@ -1,5 +1,4 @@
 import app from "./app";
-import { IngredientController } from "./Controllers/IngredientController";
 import { Logger } from "./logger";
 
 app.listen(3001, () => {

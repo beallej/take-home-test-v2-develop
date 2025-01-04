@@ -8,17 +8,23 @@ import Paper from "@mui/material/Paper";
 import { Box, Button } from "@mui/material";
 import { Ingredient } from "../Types/Ingredient";
 import { useMutationIngredientDelete } from "../Hooks/Mutation/IngredientsMutation";
+import { TAGS_OPTIONS } from "../Types/Tag";
 
 export function IngredientTable({
   ingredients,
+  onClickModifyIngredient
 }: {
   ingredients: Ingredient[];
+  onClickModifyIngredient: (ingredient: Ingredient) => void;
 }): JSX.Element {
   const { mutateAsync: deleteIngredient } = useMutationIngredientDelete();
 
   const handlerButtonDelete = async (ingredient: Ingredient) => {
     await deleteIngredient(ingredient.id);
   };
+  const handlerButtonModify = (ingredient: Ingredient) => {
+    onClickModifyIngredient(ingredient)
+  }
 
   return (
     <Box className="tableContainer">
@@ -41,6 +47,12 @@ export function IngredientTable({
                   {row.name}
                 </TableCell>
                 <TableCell align="right">{row.price} €</TableCell>
+                <TableCell align="right">{TAGS_OPTIONS[row.tag]}</TableCell>
+                <TableCell align="right">
+                  <Button onClick={() => handlerButtonModify(row)}>
+                    MODIFY
+                  </Button>
+                </TableCell>
                 <TableCell align="right">
                   <Button onClick={() => handlerButtonDelete(row)}>
                     DELETE

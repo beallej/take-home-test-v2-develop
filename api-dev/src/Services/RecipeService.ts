@@ -1,6 +1,6 @@
-import { getRepository, In } from "typeorm";
-import { Ingredient } from "../Entities/Ingredient";
+import { getRepository } from "typeorm";
 import { Recipe } from "../Entities/Recipe";
+import { CreateRecipe } from "../Model/Recipe"
 
 export class RecipeService {
   static async list(): Promise<Recipe[]> {
@@ -10,14 +10,7 @@ export class RecipeService {
     return recipes;
   }
 
-  static async create(recipe: Recipe): Promise<Recipe> {
-    if (recipe.ingredients) {
-      const ingredients = await getRepository(Ingredient).find({
-        where: { id: In(recipe.ingredients) },
-      });
-      recipe.ingredients = ingredients;
-    }
-
+  static async create(recipe: CreateRecipe): Promise<Recipe> {
     const newRecipe = await getRepository(Recipe).save(recipe);
     return newRecipe;
   }
@@ -29,5 +22,15 @@ export class RecipeService {
 
   static async delete(id: number): Promise<void> {
     await getRepository(Recipe).delete(id);
+  }
+
+  static async getByIngredient(ingredientId: number): Promise<Recipe[]> {
+    return getRepository(Recipe)
+        .createQueryBuilder('recipe')
+        .leftJoin('recipe.ingredients', 'ingredient')
+        .where('ingredient.id = :id', { id: ingredientId })
+        .leftJoinAndSelect('recipe.ingredients', 'ingredients')
+        .getMany();
+
   }
 }

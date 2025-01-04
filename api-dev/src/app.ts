@@ -1,9 +1,8 @@
 import bodyParser from "body-parser";
 import cors from "cors";
 import rTracer from "cls-rtracer";
-import express, { Router } from "express";
+import express from "express";
 import helmet from "helmet";
-import { IncomingMessage, ServerResponse } from "http";
 import { clientErrorHandler, logErrors, morganMiddleware } from "./middlewares";
 import { createConnection } from "typeorm";
 import routes from "./Routes";

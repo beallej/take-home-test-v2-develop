@@ -8,11 +8,12 @@ import {
 import { useState } from "react";
 import { CardCustom } from "../Components/CardCustom";
 import { Loader } from "../Components/Loader";
+import { useGetIngredientAutocompleteData } from "../Hooks/Display/useGetIngredientAutocompleteData"
 import { useMutationRecipeCreate } from "../Hooks/Mutation/RecipeMutation";
 import { useQueryIngredientList } from "../Hooks/Query/IngredientQuery";
 import { ErrorPage } from "../Pages/ErrorPage";
-import { Ingredient } from "../Types/Ingredient";
 import { OptionsMultiSelectType } from "../Types/OptionsMultiSelect";
+import { areRecipeIngredientsValid } from "../Utils/validations"
 
 export function CreateRecipesForm(): JSX.Element {
   const [name, setName] = useState("");
@@ -22,8 +23,10 @@ export function CreateRecipesForm(): JSX.Element {
     OptionsMultiSelectType[]
   >([]);
   const { mutateAsync: createRecipe } = useMutationRecipeCreate();
-  const { data: ingredients, status, isLoading } = useQueryIngredientList();
+  const { data: _ingredients, status, isLoading } = useQueryIngredientList();
+  const ingredients = _ingredients ?? []
 
+  const { options, getIngredients } = useGetIngredientAutocompleteData(ingredients);
   const resetFields = () => {
     setName("");
     setTimeToCook(0);
@@ -31,10 +34,11 @@ export function CreateRecipesForm(): JSX.Element {
     setSelectedIngredients([]);
   };
 
+  const isValidRecipe = name !== "" && timeToCook > 0 && numberOfPeople > 0 && areRecipeIngredientsValid(getIngredients(selectedIngredients));
   const handlerSubmitNewRecipe = async () => {
-    if (!name || !timeToCook || !numberOfPeople || !selectedIngredients) {
-      alert("Please fill all the fields");
-      return;
+    if (!name || !timeToCook || !numberOfPeople || !selectedIngredients || !areRecipeIngredientsValid(getIngredients(selectedIngredients))) {
+        alert("Recipe is not valid");
+        return;
     }
 
     await createRecipe({
@@ -82,9 +86,7 @@ export function CreateRecipesForm(): JSX.Element {
               value={selectedIngredients}
               multiple
               id="combo-box-demo"
-              options={ingredients.map((e: Ingredient) => {
-                return { label: e.name, id: e.id };
-              })}
+              options={options}
               renderInput={(params: any) => (
                 <TextField {...params} label="Ingredients" />
               )}
@@ -121,7 +123,7 @@ export function CreateRecipesForm(): JSX.Element {
             />
           </FormControl>
           <FormControl margin="normal">
-            <Button onClick={handlerSubmitNewRecipe} variant="contained">
+            <Button disabled={!isValidRecipe} onClick={handlerSubmitNewRecipe} variant="contained">
               Submit
             </Button>
           </FormControl>

@@ -1,27 +1,31 @@
-import { Box, Button, FormControl, TextField } from "@mui/material";
+import { Box, Button, FormControl, TextField, Select, MenuItem } from "@mui/material";
 import { useState } from "react";
 import { CardCustom } from "../Components/CardCustom";
 import { useMutationIngredientCreate } from "../Hooks/Mutation/IngredientsMutation";
+import { isTag, Tag, TAGS_LIST } from "../Types/Tag"
 
 export function CreateIngredientForm(): JSX.Element {
   const { mutateAsync: createIngredient } = useMutationIngredientCreate();
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState<number>(0);
+  const [tag, setTag] = useState<Tag | ''>('');
 
   const resetFields = () => {
     setName("");
     setPrice(0);
+    setTag('');
   };
 
   const handlerSubmitNewIngredient = async () => {
-    if (name === undefined || name === "" || price === undefined) {
+    if (name === undefined || name === "" || price === undefined || tag === '') {
       alert("Please fill all the fields");
       return;
     }
     await createIngredient({
       name,
       price,
+      tag
     });
 
     resetFields();
@@ -63,7 +67,17 @@ export function CreateIngredientForm(): JSX.Element {
               multiplied by the number of people in the recipe.
             </span>
           </FormControl>
-
+          <FormControl fullWidth>
+            <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={tag}
+                label="Tag"
+                onChange={(e) => isTag(e.target.value) && setTag(e.target.value)}
+            >
+              {TAGS_LIST.map(tagItem => <MenuItem key={tagItem.value} value={tagItem.value}>{tagItem.label}</MenuItem>)}
+            </Select>
+          </FormControl>
           <FormControl margin="normal">
             <Button onClick={handlerSubmitNewIngredient} variant="contained">
               Submit

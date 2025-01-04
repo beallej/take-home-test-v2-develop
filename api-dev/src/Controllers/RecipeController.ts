@@ -1,4 +1,6 @@
+import { RecipeSchema } from "../DTO/Recipe"
 import { RecipeService } from "../Services/RecipeService";
+import { CreateRecipeUseCase } from "../UseCases/recipe/CreateRecipeUseCase"
 
 export class RecipeController {
   public static async list(req: any, res: any, next: any): Promise<void> {
@@ -13,7 +15,8 @@ export class RecipeController {
 
   public static async create(req: any, res: any, next: any): Promise<void> {
     try {
-      const recipe = await RecipeService.create(req.body);
+      const recipeDTO = RecipeSchema.parse(req.body)
+      const recipe = await CreateRecipeUseCase.createRecipe(recipeDTO);
       res.send(recipe);
     } catch (err) {
       console.error("[RecipeController.create] Error creating recipe", err);

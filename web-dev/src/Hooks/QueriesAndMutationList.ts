@@ -3,6 +3,7 @@ export enum Requests {
 
   // queries
   listIngredient = "listIngredientQuery",
+  getRecipesWithIngredient = "getRecipesWithIngredient",
   // mutations
   createIngredient = "createIngredientMutation",
   updateIngredient = "updateIngredientMutation",
