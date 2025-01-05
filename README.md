@@ -44,3 +44,6 @@ They are categorized as follow :
 - `help`: Display commands help
 
 You're good to go 🦄
+
+##AVIS CRITIQUE
+[Click here](CRITIQUE.md)
