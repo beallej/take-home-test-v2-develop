@@ -1,11 +1,14 @@
 import { Card } from "@mui/material";
 
+export enum CardCustomVariant {
+    SMALL = "small",
+}
 export function CardCustom(props: {
   title?: string | undefined;
-  isSmall?: boolean | undefined;
+  variant?: CardCustomVariant | undefined;
   children: JSX.Element[] | JSX.Element;
 }): JSX.Element {
-  const nameClass = props.isSmall ? "cardCustomSmall" : "CardCustom";
+  const nameClass = props.variant  === CardCustomVariant.SMALL ? "card" : "card-small";
 
   return (
     <Card className={nameClass}>

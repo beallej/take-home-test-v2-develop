@@ -34,15 +34,17 @@ export function IngredientPage(): JSX.Element {
 
   return (
     <div id="recipes-pages">
-      <h1>INGREDIENTS</h1>
-      <Box>
-        <Button
-          onClick={isCreationMode ? cancelCreationMode : activeCreationMode}
-          variant="outlined"
-        >
-          {isCreationMode ? "Cancel creation" : "Create new ingredient"}
-        </Button>
-      </Box>
+      <div className={"page-header"}>
+        <h1>INGREDIENTS</h1>
+        <Box>
+          <Button
+            onClick={isCreationMode ? cancelCreationMode : activeCreationMode}
+            variant="outlined"
+          >
+            {isCreationMode ? "Cancel creation" : "Create new ingredient"}
+          </Button>
+        </Box>
+      </div>
       <Box display={"flex"} gap={2}>
         {isCreationMode && <CreateIngredientForm />}
         {currentIngredient && <ModifyIngredientForm ingredient={currentIngredient} handleClose={() => setCurrentIngredient(undefined)} />}

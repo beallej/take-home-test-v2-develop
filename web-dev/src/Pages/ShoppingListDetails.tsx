@@ -25,11 +25,11 @@ export function ShoppingListDetails(): JSX.Element {
 
   return (
     <div id="shopping-list-detail-pages">
-      <div className="ShoppingListDetailContainer">
+      <div className="page-header">
+        <h1>SHOPPING LIST DETAILS</h1>
         <Button onClick={handleGoBack} variant="outlined">
           Go back
         </Button>
-        <h1>SHOPPING LIST DETAILS</h1>
       </div>
 
       <Box>
@@ -40,7 +40,7 @@ export function ShoppingListDetails(): JSX.Element {
             </Typography>
 
             <Typography
-              sx={{ fontSize: 14 }}
+              className={"text-sm"}
               color="text.secondary"
               gutterBottom
             >

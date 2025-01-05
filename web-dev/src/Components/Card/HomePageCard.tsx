@@ -1,5 +1,5 @@
 import { Box, Button } from "@mui/material";
-import { CardCustom } from "./CardCustom";
+import { CardCustom, CardCustomVariant } from "./CardCustom";
 
 export function HomePageCard(props: {
   cardTitle: string;
@@ -8,9 +8,9 @@ export function HomePageCard(props: {
   onClick: () => void;
 }): JSX.Element {
   return (
-    <Box className="MarginBottom32Px">
-      <CardCustom title={props.cardTitle} isSmall>
-        <Box className="MarginBottom16Px">
+    <Box className="mg-b-md">
+      <CardCustom title={props.cardTitle} variant={CardCustomVariant.SMALL}>
+        <Box className="mg-b-sm">
           <Button onClick={props.onClick} variant="outlined">
             {props.buttonText}
           </Button>

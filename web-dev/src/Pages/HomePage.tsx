@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { HomePageCard } from "../Components/HomePageCard";
+import { HomePageCard } from "../Components/Card/HomePageCard";
 
 export function HomePage(): JSX.Element {
   const navigate = useNavigate();
@@ -9,15 +9,15 @@ export function HomePage(): JSX.Element {
     <div id="home-pages">
       <h1>WELCOME TO OUR FANTASTIC SHOPPING LIST HELPER </h1>
 
-      <Box className="MarginBottom16Px">
+      <Box className="mg-b-sm">
         <span>
           The goal of this product it's to generate your menu and fill your
           fridge easily !
         </span>
       </Box>
 
-      <Box className="MarginBottom32Px">
-        <span className="BoldText">Try it now !</span>
+      <Box className="mg-b-md">
+        <span className="bold-text">Try it now !</span>
       </Box>
       <Box display={"flex"} gap={2}>
         <HomePageCard

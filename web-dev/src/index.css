@@ -13,68 +13,108 @@ code {
     monospace;
 }
 
-.AppBarButtonContainer {
+:root {
+  --space-unit: 4px;
+  --space-1:  var(--space-unit);
+  --space-2:   calc(2 * var(--space-unit));
+  --space-3:   calc(3 * var(--space-unit));
+  --space-4:   calc(4 * var(--space-unit));
+  --space-5:   calc(5 * var(--space-unit));
+  --space-6:   calc(6 * var(--space-unit));
+  --space-16:   calc(16 * var(--space-unit));
+  --space-20:   calc(20 * var(--space-unit));
+  --space-32:   calc(32 * var(--space-unit));
+
+  --font-size-xs: 8px;
+  --font-size-sm: 10px;
+  --font-size-md: 14px;
+  --font-size-h2: 32px;
+}
+
+.form-body {
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+.app-bar-button-container {
   flex-grow: 1;
   display: flex;
   justify-content: flex-end;
-  gap: 24px;
+  gap: var(--space-6);
 }
 
-.CardCustom {
-  padding: 16px;
+.card {
+  padding: var(--space-4);
   width: 100%;
   height: 100%;
 }
 
-.cardCustomSmall {
-  padding: 16px;
-  width: 300px;
+.card-small {
+  padding: var(--space-4);
   height: 100%;
+  width: 300px;
 }
 
-.CommonLayout {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-right: 80px;
-  padding-left: 80px;
+.common-layout {
+  padding-top: var(--space-5);
+  padding-bottom: var(--space-5);
+  padding-right: var(--space-20);
+  padding-left: var(--space-20);
 }
 
-.MarginRight16Px {
-  margin-right: 16px !important;
+.mg-r-sm {
+  margin-right: var(--space-4) !important;
 }
 
-.MarginTop16Px {
-  margin-top: 16px;
+.mg-t-sm {
+  margin-top: var(--space-4);
 }
 
-.MarginBottom16Px {
-  margin-bottom: 16px;
+
+.mg-b-sm {
+  margin-bottom: var(--space-4);
 }
 
-.MarginBottom64Px {
-  margin-bottom: 64px;
+.mg-b-lg {
+  margin-bottom: var(--space-32);
 }
 
-.MarginBottom32Px {
-  margin-bottom: 32px;
+.mg-b-md {
+  margin-bottom: var(--space-16);
 }
 
-.SmallTextExplanation {
-  font-size: 10px;
-  margin-top: 4px;
+.text-sm {
+    font-size: var(--font-size-md);
+}
+.text-detail-explanation {
+  font-size: var(--font-size-sm);
+  margin-top: var(--space-1);
 }
 
-.BoldText  {
+.bold-text {
   font-weight: bold;
 }
 
-.ShoppingListDetailContainer {
-  display: flex;
-  margin-bottom: 32px;
-  gap: 16px;
+.page-header {
+  margin-bottom: var(--space-4);
 }
 
-.tableContainer {
-  margin-top: 16px;
+.table-container {
   width: 100%;
+}
+.form-box {
+  display: flex;
+  justify-content: space-between;
+}
+.table {
+  min-width: 650px;
+}
+.table-row {
+  &:last-child td, &:last-child th {
+    border: 0
+  }
+}
+.modal {
+  width: 500px;
+  margin: auto;
+  margin-top: var(--space-6);
 }

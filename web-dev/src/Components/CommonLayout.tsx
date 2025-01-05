@@ -6,7 +6,7 @@ export function CommonLayout(props: {
 }): JSX.Element {
   return (
     <Box>
-      <Box className="CommonLayout">{props.children}</Box>
+      <Box className="common-layout">{props.children}</Box>
     </Box>
   );
 }

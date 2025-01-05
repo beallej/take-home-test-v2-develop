@@ -17,7 +17,7 @@ export const useMutationShoppingListCreate = (): UseMutationResult<
   const clientQuery = useQueryClient();
   return useMutation(
     [Requests.createShoppingList],
-    async ({ name, numberOfMeals, maximumPrice, numberOfPeople }: any) => {
+    async ({ name, numberOfMeals, maximumPrice, numberOfPeople }: ShoppingListCreateType) => {
       return await axios.post(`/shopping-list/create`, {
         name,
         numberOfMeals,

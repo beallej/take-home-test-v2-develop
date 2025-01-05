@@ -1,12 +1,6 @@
-import {
-  Autocomplete,
-  Box,
-  Button,
-  FormControl,
-  TextField,
-} from "@mui/material";
-import { useState } from "react";
-import { CardCustom } from "../Components/CardCustom";
+import { Autocomplete, Box, Button, FormControl, TextField, Typography } from "@mui/material";
+import React, { useState } from "react";
+import { CardCustom, CardCustomVariant } from "../Components/Card/CardCustom";
 import { Loader } from "../Components/Loader";
 import { useGetIngredientAutocompleteData } from "../Hooks/Display/useGetIngredientAutocompleteData"
 import { useMutationRecipeCreate } from "../Hooks/Mutation/RecipeMutation";
@@ -61,12 +55,10 @@ export function CreateRecipesForm(): JSX.Element {
   return (
     <div id="create-recipes-form">
       <Box
-        display="flex"
-        justifyContent="space-between"
-        className="MarginTop16Px"
+        className="form-box"
       >
-        <CardCustom isSmall>
-          <h2>New recipe</h2>
+        <CardCustom variant={CardCustomVariant.SMALL}>
+          <Typography variant="h2">New recipe</Typography>
           <FormControl fullWidth margin="normal">
             <TextField
               id="name-recipe"
@@ -80,22 +72,25 @@ export function CreateRecipesForm(): JSX.Element {
           <FormControl fullWidth margin="normal">
             {/* on peut mettre plusieurs fois le même ingrédient dans le formulaire mais après ça l'enregistre qu'une fois*/}
             <Autocomplete
-              onChange={(_e, value: OptionsMultiSelectType[]) => {
-                setSelectedIngredients(value);
-              }}
-              value={selectedIngredients}
-              multiple
-              id="combo-box-demo"
-              options={options}
-              renderInput={(params: any) => (
-                <TextField {...params} label="Ingredients" />
-              )}
+                onChange={(_e, value: OptionsMultiSelectType[]) => {
+                  setSelectedIngredients(value);
+                }}
+                value={selectedIngredients}
+                multiple
+                id="combo-box-demo"
+                options={options}
+                renderInput={(params: any) => (
+                    <TextField {...params} label="Ingredients"/>
+                )}
             />
+            <span className="text-detail-explanation">
+              * Recipes must contain 1 féculent and maximum 1 protéine.
+            </span>
           </FormControl>
           <FormControl fullWidth margin="normal">
             <TextField
-              value={timeToCook}
-              onChange={(e) =>
+                value={timeToCook}
+                onChange={(e) =>
                 e.target.value
                   ? setTimeToCook(Number(e.target.value))
                   : setTimeToCook(0)

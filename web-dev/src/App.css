@@ -28,8 +28,8 @@
   color: #61dafb;
 }
 
-.AppBarButtonContainer {
+.app-bar-button-container {
   flex-grow: 1;
-  display: "flex";
-  justify-content: "flex-end";
+  display: flex;
+  justify-content: flex-end;
 }

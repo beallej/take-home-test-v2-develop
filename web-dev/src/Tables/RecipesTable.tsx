@@ -24,9 +24,9 @@ export function RecipesTable({ recipes }: { recipes: Recipe[] }): JSX.Element {
   };
 
   return (
-    <Box className="tableContainer">
+    <Box className="table-container">
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table className={"table"} aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell>My recipes</TableCell>
@@ -41,7 +41,7 @@ export function RecipesTable({ recipes }: { recipes: Recipe[] }): JSX.Element {
             {recipes.map((row, index) => (
               <TableRow
                 key={`recipe_name${index}`}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                className={"table-row"}
               >
                 <TableCell component="th" scope="row">
                   {row.name}

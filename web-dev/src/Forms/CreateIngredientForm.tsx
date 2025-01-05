@@ -1,6 +1,6 @@
-import { Box, Button, FormControl, TextField, Select, MenuItem } from "@mui/material";
+import { Box, Button, FormControl, MenuItem, Select, TextField, Typography } from "@mui/material";
 import { useState } from "react";
-import { CardCustom } from "../Components/CardCustom";
+import { CardCustom, CardCustomVariant } from "../Components/Card/CardCustom";
 import { useMutationIngredientCreate } from "../Hooks/Mutation/IngredientsMutation";
 import { isTag, Tag, TAGS_LIST } from "../Types/Tag"
 
@@ -34,12 +34,10 @@ export function CreateIngredientForm(): JSX.Element {
   return (
     <div id="create-recipes-form">
       <Box
-        display="flex"
-        justifyContent="space-between"
-        className="MarginTop16Px"
+        className="form-box"
       >
-        <CardCustom isSmall>
-          <h2>New ingredient</h2>
+        <CardCustom variant={CardCustomVariant.SMALL}>
+          <Typography variant="h2">New ingredient</Typography>
           <FormControl fullWidth margin="normal">
             <TextField
               value={name}
@@ -62,7 +60,7 @@ export function CreateIngredientForm(): JSX.Element {
               type="number"
               fullWidth
             />
-            <span className="SmallTextExplanation">
+            <span className="text-detail-explanation">
               *Keep in mind that the price is for one person. Prices are
               multiplied by the number of people in the recipe.
             </span>

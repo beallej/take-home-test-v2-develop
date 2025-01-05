@@ -28,20 +28,22 @@ export function RecipesPage(): JSX.Element {
   }
 
   return (
-    <div id="recipes-pages">
-      <h1>RECIPES</h1>
-      <Box>
-        <Button
-          onClick={isCreationMode ? cancelCreationMode : activeCreationMode}
-          variant="outlined"
-        >
-          {isCreationMode ? "Cancel creation" : "Create new recipe"}
-        </Button>
-      </Box>
-      <Box display={"flex"} gap={2}>
-        {isCreationMode && <CreateRecipesForm />}
-        <RecipesTable recipes={data} />
-      </Box>
-    </div>
-  );
-}
+      <div id="recipes-pages">
+        <div className={"page-header"}>
+          <h1>RECIPES</h1>
+          <Box>
+            <Button
+                onClick={isCreationMode ? cancelCreationMode : activeCreationMode}
+                variant="outlined"
+            >
+              {isCreationMode ? "Cancel creation" : "Create new recipe"}
+            </Button>
+          </Box>
+        </div>
+          <Box display={"flex"} gap={2}>
+            {isCreationMode && <CreateRecipesForm/>}
+            <RecipesTable recipes={data}/>
+          </Box>
+        </div>
+        );
+        }

@@ -38,7 +38,7 @@ export function AppBarCustom(): JSX.Element {
             SHOPPING LIST HELPER
           </Typography>
 
-          <Box className="AppBarButtonContainer">
+          <Box className="app-bar-button-container">
             {pages.map((page) => (
               <Button href={page.path} key={page.name} sx={sxStyleButton}>
                 {page.name}

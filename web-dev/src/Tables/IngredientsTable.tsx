@@ -27,13 +27,15 @@ export function IngredientTable({
   }
 
   return (
-    <Box className="tableContainer">
+    <Box className="table-container">
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table className={"table"} aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell>My ingredients</TableCell>
               <TableCell align="right">Price</TableCell>
+              <TableCell align="right">Tag</TableCell>
+              <TableCell align="right">Modify</TableCell>
               <TableCell align="right">Delete</TableCell>
             </TableRow>
           </TableHead>
@@ -41,7 +43,7 @@ export function IngredientTable({
             {ingredients.map((row) => (
               <TableRow
                 key={row.name}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                className={"table-row"}
               >
                 <TableCell component="th" scope="row">
                   {row.name}

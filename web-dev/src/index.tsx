@@ -12,9 +12,10 @@ import { CommonLayout } from "./Components/CommonLayout";
 import { ParametersPages } from "./Pages/ParametersPage";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { IngredientPage } from "./Pages/IngredientPage";
-import { Box } from "@mui/material";
+import { Box, ThemeProvider } from "@mui/material";
 import { AppBarCustom } from "./Components/AppBarCustom";
 import { ShoppingListDetails } from "./Pages/ShoppingListDetails";
+import { theme } from "./theme"
 
 const router = createBrowserRouter([
   {
@@ -56,12 +57,14 @@ const queryClient = new QueryClient({
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <Box>
-        <AppBarCustom />
-      </Box>
-      <CommonLayout>
-        <RouterProvider router={router} />
-      </CommonLayout>{" "}
+      <ThemeProvider theme={theme}>
+        <Box>
+          <AppBarCustom />
+        </Box>
+        <CommonLayout>
+          <RouterProvider router={router} />
+        </CommonLayout>{" "}
+      </ThemeProvider>
     </QueryClientProvider>
   </React.StrictMode>
 );

@@ -1,6 +1,6 @@
-import { Box, Button, FormControl, TextField } from "@mui/material";
+import { Box, Button, FormControl, TextField, Typography } from "@mui/material";
 import { useState } from "react";
-import { CardCustom } from "../Components/CardCustom";
+import { CardCustom, CardCustomVariant } from "../Components/Card/CardCustom";
 import { useMutationShoppingListCreate } from "../Hooks/Mutation/ShoppingListMutation";
 
 export function CreateShoppingListForm(): JSX.Element {
@@ -38,12 +38,10 @@ export function CreateShoppingListForm(): JSX.Element {
   return (
     <div id="create-shopping-list-form">
       <Box
-        display="flex"
-        justifyContent="space-between"
-        className="MarginTop16Px"
+        className="form-box"
       >
-        <CardCustom isSmall>
-          <h2>New shopping list</h2>
+        <CardCustom variant={CardCustomVariant.SMALL}>
+          <Typography variant="h2">New shopping list</Typography>
           <FormControl fullWidth margin="normal">
             <TextField
               id="name-shopping-list"
@@ -84,7 +82,7 @@ export function CreateShoppingListForm(): JSX.Element {
               type="number"
               fullWidth
             />
-            <span className="SmallTextExplanation">
+            <span className="text-detail-explanation">
               * Optional: if it's empty we will take all the recipes
             </span>
           </FormControl>
@@ -103,7 +101,7 @@ export function CreateShoppingListForm(): JSX.Element {
               type="number"
               fullWidth
             />
-            <span className="SmallTextExplanation">
+            <span className="text-detail-explanation">
               * Optional: if it's empty we will take all the recipes
             </span>
           </FormControl>

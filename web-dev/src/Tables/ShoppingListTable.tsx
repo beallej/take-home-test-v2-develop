@@ -26,9 +26,9 @@ export function ShoppingListTable({
   }
 
   return (
-    <Box className="tableContainer">
+    <Box className="table-container">
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table className={"table"} aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell>My shopping lists</TableCell>
@@ -40,11 +40,11 @@ export function ShoppingListTable({
             {shoppingList.map((row, index) => (
               <TableRow
                 key={`recipe_name${index}`}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                className={"table-row"}
               >
                 <TableCell component="th" scope="row">
                   <Button
-                    className="MarginRight16Px"
+                    className="mg-r-sm"
                     variant="outlined"
                     color="primary"
                     onClick={() => handlerRedirectToDetails(row)}
